@@ -3,7 +3,7 @@ import { CheckBox } from '@rneui/themed';
 
 export default function ToDoScreen({ navigation, route }) {
   const { item } = route.params;
-  const todo = item
+  const todo = item;
 
   function removeTodo() {
     DeviceEventEmitter.emit('todo.delete', item)
@@ -24,7 +24,7 @@ export default function ToDoScreen({ navigation, route }) {
         <Button className="col-auto px-3 py-2 bg-red-600" title='Delete' onPress={removeTodo} />
         <View className="flex flex-row col-auto">
           <Text>Done: </Text>
-          <CheckBox checked={item.checked} onTouchEnd={checkTodo}></CheckBox>
+          <CheckBox checked={item.checked} onTouchEnd={checkTodo} />
         </View>
       </View>
     </View>

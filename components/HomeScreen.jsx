@@ -2,31 +2,31 @@ import { useState } from 'react';
 import { FlatList, Text, TextInput, TouchableHighlight, View, Button, DeviceEventEmitter } from 'react-native';
 
 export default function HomeScreen({ navigation }) {
-  const [todo, setTodo] = useState('')
-  const [todoId, setTodoId] = useState(0)
-  const [todos, setTodos] = useState([])
+  const [todo, setTodo] = useState('');
+  const [todoId, setTodoId] = useState(0);
+  const [todos, setTodos] = useState([]);
 
   function addTodo() {
-    setTodos(todos.concat({ id: todoId, title: todo, checked: false }))
-    setTodo('')
-    setTodoId(todoId + 1)
+    setTodos(todos.concat({ id: todoId, title: todo, checked: false }));
+    setTodo('');
+    setTodoId(todoId + 1);
   }
 
   function removeTodo({ id }) {
-    setTodos(todos.filter(todo => todo.id !== id))
+    setTodos(todos.filter(todo => todo.id !== id));
   }
 
   function checkUncheck({ id }) {
     setTodos(todos.map(todo => {
       if (todo.id === id) {
-        todo.checked = !todo.checked
+        todo.checked = !todo.checked;
       }
-      return todo
+      return todo;
     }))
   }
 
-  DeviceEventEmitter.addListener('todo.delete', removeTodo)
-  DeviceEventEmitter.addListener('todo.check', checkUncheck)
+  DeviceEventEmitter.addListener('todo.delete', removeTodo);
+  DeviceEventEmitter.addListener('todo.check', checkUncheck);
 
   const renderItem = ({ item }) => (
     <TouchableHighlight
